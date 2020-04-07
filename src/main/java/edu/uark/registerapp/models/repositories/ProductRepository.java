@@ -5,9 +5,11 @@ import java.util.UUID;
 
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import edu.uark.registerapp.models.entities.ProductEntity;
 
 public interface ProductRepository extends CrudRepository<ProductEntity, UUID> {
 	Optional<ProductEntity> findById(UUID id);
 	Optional<ProductEntity> findByLookupCode(String lookupCode);
+	List<ProductEntity> findByLookupCodeContainingIgnoreCase(String partialLookupCode);
 }
