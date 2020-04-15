@@ -20,5 +20,13 @@ public class TransactionRouteController extends BaseRouteController {
 		final HttpServletRequest request
 	) {
        return new ModelAndView(ViewNames.TRANSACTION.getViewName()); 
-    }
+	}
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView addToCart(
+		@RequestParam final Map<String, String> queryParameters,
+		final HttpServletRequest request
+	) {
+		return new ModelAndView(ViewNames.TRANSACTION.getViewName()); 
+	}
+
 }
