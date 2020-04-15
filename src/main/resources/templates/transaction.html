@@ -10,48 +10,6 @@
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
 	<script type="text/javascript" src="/scripts/transaction.js" defer></script>
 </head>
-<style>
-	table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  
-  td, th {
-    border: 1px solid #0a0909;
-    text-align: left;
-    padding: 8px;
-  }
-    
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
-  .button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 10px 28px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-.remove {
-  background-color: rgb(207, 23, 17);
-  border: none;
-  color: black;
-  padding: 6px 18px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-</style>
 <body>
 	<h1>Shopping Cart</h1>
 	<table id="table">
@@ -76,6 +34,7 @@
 			<th><input type="text" id="q1"><button type="button" class="remove">Remove</button></th>
 		</tr>
 	</table>
-	<button type="button" class="button" id="checkout">Checkout</button>
+  <button type="button" class="button" id="checkout">Checkout</button>
+  <button type="button" class="button" id="addItem">Add Item</button>
 </body>
 </html>

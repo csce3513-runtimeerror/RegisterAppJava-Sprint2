@@ -1,6 +1,6 @@
 let hideEmployeeSavedAlertTimer = undefined;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function(event) {
 	document.getElementById("saveButton")
 		.addEventListener("click", saveActionClick);
 
