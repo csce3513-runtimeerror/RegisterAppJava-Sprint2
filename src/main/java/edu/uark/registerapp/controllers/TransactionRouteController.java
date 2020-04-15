@@ -14,19 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(value = "/transaction")
 public class TransactionRouteController extends BaseRouteController {
+	//Handle adding items to cart
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
        return new ModelAndView(ViewNames.TRANSACTION.getViewName()); 
-	}
-	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView addToCart(
-		@RequestParam final Map<String, String> queryParameters,
-		final HttpServletRequest request
-	) {
-		return new ModelAndView(ViewNames.TRANSACTION.getViewName()); 
 	}
 
 }
