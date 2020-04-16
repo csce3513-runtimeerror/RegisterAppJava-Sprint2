@@ -1,6 +1,6 @@
 package edu.uark.registerapp.controllers;
 
-import java.util.Map;
+//import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.products.ProductByLookupCodeQuery;
@@ -37,6 +37,8 @@ public class ProductSearchRouteController extends BaseController {
             modelAndView.addObject(ViewModelNames.PRODUCT.getValue(),productSearch.getLookupCode());
             return modelAndView;
             //NOT COMPLETE:: add whatever needed that I can't figure out at the current moment
+
+            
         }
         return new ModelAndView();
     }
