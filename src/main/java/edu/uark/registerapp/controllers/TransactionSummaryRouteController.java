@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/transaction")
-public class TransactionRouteController extends BaseRouteController {
+public class TransactionSummaryRouteController extends BaseRouteController {
 	//Handle adding items to cart
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(
