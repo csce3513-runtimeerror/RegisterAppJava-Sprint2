@@ -1,20 +1,44 @@
 package edu.uark.registerapp.commands.transaction;
-import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import edu.uark.commands.ResultCommandInterface;
+import edu.uark.models.api.Transaction;
+import edu.uark.models.repositories.TransactionRepository;
 
-import edu.uark.registerapp.commands.ResultCommandInterface;
-import edu.uark.registerapp.commands.exceptions.NotFoundException;
-import edu.uark.registerapp.models.api.Employee;
-import edu.uark.registerapp.models.entities.EmployeeEntity;
-import edu.uark.registerapp.models.repositories.EmployeeRepository;
+public class TransactionQuery implements ResultCommandInterface<Transaction> 
+{
+	@Override
+	public Transaction execute() 
+	{
+		return new Transaction(
+			this.transactionRepository.get(this.transactionId)
+		);
+	}
 
-@Service
-public class TransactionQuery {
-    @Override
-    //todo
-    //@Autowired
-    //todo
+	//Properties
+	private UUID transactionId;
+	public UUID getTransactionId() 
+	{
+		return this.transactionId;
+	}
+	
+	public TransactionQuery setTransactionId(UUID transactionId) 
+	{
+		this.transactionId = transactionId;
+		return this;
+	}
+	
+
+	public TransactionQuery setTransactionRepository(TransactionRepositoryInterface transactionRepository) 
+	{
+		this.transactionRepository = transactionRepository;
+		return this;
+	}
+	
+	public TransactionQuery() 
+	{
+		this.transactionRepository = new TransactionRepository();
+	}
+
+    //TODO: TransactionRepositoryInterface
 }
