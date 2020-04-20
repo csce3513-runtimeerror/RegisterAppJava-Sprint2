@@ -19,7 +19,7 @@ import edu.uark.registerapp.models.repositories.ProductRepository;
 public class ProductByPartialSearchQuery implements ResultCommandInterface<Product> {
 
 	@Override
-	public Product[] execute() {
+	public Product execute() {
 		this.validateProperties();
 
 		final List<Product> products = new LinkedList<Product>();
