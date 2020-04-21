@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.products.ProductByLookupCodeQuery;
-import edu.uark.registerapp.commands.products.ProductByPartialLookupCodeQuery;
+import edu.uark.registerapp.commands.products.ProductByPartialSearchQuery;
 import edu.uark.registerapp.commands.products.ProductSearchCommand;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
@@ -46,7 +46,7 @@ public class ProductSearchRouteController extends BaseController {
     @Autowired
     private ProductSearchCommand productSearchCommand;
     @Autowired
-    private ProductByLookupCodeQuery productByLookupCodeQuery;
+    private ProductByPartialSearchQuery productByPartialSearchQuery;
     @Autowired
-    private ProductByPartialLookupCodeQuery productByPartialLookupCodeQuery;
+    private ProductByPartialSearchQuery productByPartialSearchQuery;
 }

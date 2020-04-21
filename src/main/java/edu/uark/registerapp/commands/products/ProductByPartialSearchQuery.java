@@ -48,12 +48,13 @@ public class ProductByPartialSearchQuery implements ResultCommandInterface<Produ
 	// Properties
 	private String partialLookupCode;
 	private String partialSearch;
+
 	public String getPartialSearch() {
 		return this.getPartialSearch();
 	}
 
 	public ProductByPartialSearchQuery setPartialSearchQuery(final String partialSearch) {
-		this.getpartialSearch = partialSearch;
+		this.partialSearch = partialSearch;
 		return this;
 	}
 
