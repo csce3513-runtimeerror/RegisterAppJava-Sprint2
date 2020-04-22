@@ -15,7 +15,44 @@
 	<div class="header">
 		<h1 class="primary-message">Product Search</h1>
 	</div>
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+		</div>
 
+		<div class="productsWrapper">
+			<div th:class="not ${isElevatedUser} ? hidden : ''">
+				<a href="/productDetail/" class="button">Create New</a>
+			</div>
+
+			<br /><br />
+
+			<ul id="productsListing" class="products">
+				<li th:each="product : ${products}">
+					<input type="hidden" name="productId" th:value="${product.id}" />
+					<span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
+					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.count}">0</span>
+					<br />&nbsp;&nbsp;<span class="productCreatedOnDisplay" th:text="${product.createdOn}">12/31/1999</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="hidden">
+			<input type="checkbox" id="isRefreshed" class="hidden">
+			<script type="text/javascript">
+				window.onunload = function() {
+					const isRefreshedElement = document.getElementById("isRefreshed");
+
+					if(!isRefreshedElement.checked) {
+						isRefreshedElement.checked = true;
+					} else {
+						isRefreshedElement.checked = false;
+						location.reload();
+					}
+				}
+			</script>
+		</div>
+	</div>
 	<div id="main" class="main">
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
@@ -24,14 +61,13 @@
 			<div>
 				<input id="productSearch" type="text" name="productSearch" placeholder="Product" class="update" th:value="${productSearch}" />
 			</div>
-			<br /><br />
+			<br>
 			<div>
 				<input type="submit" value="Search" class="submit" />
 			</div>
 		</form>
-		
-				</li>
-			</ul>
+		<div class="footer">
+			<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
 		</div>
 	</script>
 	
