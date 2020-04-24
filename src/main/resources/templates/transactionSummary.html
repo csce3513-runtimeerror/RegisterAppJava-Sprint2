@@ -11,29 +11,25 @@
 	<script type="text/javascript" src="/scripts/transactionSummary.js" defer></script>
 </head>
 <body>
-	<h1>Shopping Cart</h1>
-	<table id="table">
-		<tr>
-			<th>Item</th>
-			<th>Price</th>
-			<th>Quantity</th>
-		</tr>
-		<tr>
-			<th>Book</th>
-			<th>$5.00</th>
-			<th><input type="text" class="quantity"><button type="button" class="remove">Remove</button></th>
-    </tr>
-    <tr>
-			<th>CD</th>
-			<th>$15.00</th>
-			<th><input type="text" class="quantity"><button type="button" class="remove">Remove</button></th>
-    </tr>
-    <tr>
-			<th>Shirt</th>
-			<th>$20.00</th>
-			<th><input type="text" class="quantity"><button type="button" class="remove">Remove</button></th>
-	</tr>
-	</table>
+	<div class="header">
+		<h1 class="primary-message">Shopping Cart</h1>
+	</div>
+	<div class="cart">
+		<table id="table2" class="table">
+			<tr>
+				<th>Item</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Remove Item</th>
+			</tr>
+			<tr th:each="product : ${products}">
+				<td></td>
+				<td><input type="text" class="quantity"></td>
+				<td><button type="button" class="remove">Remove</button></td>
+			 </tr>
+		</table>
+
+	</div>
 	<br>
 	<p id="quantitySum"></p>
   <button type="button" class="button" id="checkout">Checkout</button>
