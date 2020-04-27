@@ -1,6 +1,9 @@
 package edu.uark.models.repositories;
 
 import java.sql.SQLException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import edu.uark.models.entities.TransactionEntity;
 
 public class TransactionRepository extends BaseRepository<TransactionEntity> implements TransactionRepositoryInterface 
@@ -42,5 +45,7 @@ public class TransactionRepository extends BaseRepository<TransactionEntity> imp
 		return null;
 	}
 
-    // TODO: Connect to database
+	// TODO: Connect to database
+	@Autowired
+	private TransactionRepository transactionRepository;
 }
