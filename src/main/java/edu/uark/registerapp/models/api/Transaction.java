@@ -1,8 +1,7 @@
 package edu.uark.registerapp.models.api;
 
 import java.util.UUID;
-import org.apache.commons.lang3.StringUtils;
-import edu.uark.models.entities.TransactionEntity;
+import edu.uark.registerapp.models.entities.TransactionEntity;
 
 public class Transaction 
 {
@@ -39,21 +38,7 @@ public class Transaction
 		return this;
 	}	
 
-	private TransactionApiRequestStatus apiRequestStatus;
-	public TransactionApiRequestStatus getApiRequestStatus() 
-	{
-		return this.apiRequestStatus;
-	}
-    // todo: api request status
-	public Transaction() 
-	{
-		this.id = new UUID(0, 0);
-		this.transaction_num = -1;
-		this.lookupCode = "";
-
-		this.apiRequestMessage = StringUtils.EMPTY;
-		this.apiRequestStatus = TransactionApiRequestStatus.OK;
-	}
+	
 	
 	public Transaction(TransactionEntity transactionEntity) 
 	{
@@ -61,7 +46,6 @@ public class Transaction
 		this.transaction_num = transactionEntity.getTransaction_Num();
 		this.lookupCode = transactionEntity.getLookupCode();
 
-		this.apiRequestMessage = StringUtils.EMPTY;
-		this.apiRequestStatus = TransactionApiRequestStatus.OK;
+	
 	}
 }

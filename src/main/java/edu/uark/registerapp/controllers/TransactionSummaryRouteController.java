@@ -11,6 +11,23 @@ import edu.uark.registerapp.controllers.enums.ViewNames;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.UUID;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import edu.uark.registerapp.commands.products.ProductCreateCommand;
+import edu.uark.registerapp.commands.products.ProductDeleteCommand;
+import edu.uark.registerapp.commands.products.ProductUpdateCommand;
+import edu.uark.registerapp.models.api.ApiResponse;
+import edu.uark.registerapp.models.api.Transaction;
+
+
 @Controller
 @RequestMapping(value = "/transactionSummary")
 public class TransactionSummaryRouteController extends BaseRouteController {
@@ -22,7 +39,7 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 	) {
 	   return new ModelAndView(ViewNames.TRANSACTION.getViewName()); 
 	   
-	   Product product = this.getItem(position);
+	   Transaction transaction = this.getItem(position);
 	   if (product != null) {
 		   TextView lookupCodeTextView = (TextView) view.findViewById(R.id.list_view_item_product_lookup_code);
 		   if (lookupCodeTextView != null) {

@@ -1,51 +1,15 @@
-package edu.uark.models.repositories;
+package edu.uark.registerapp.models.repositories;
 
-import java.sql.SQLException;
+import java.util.Optional;
+import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 
-import edu.uark.models.entities.TransactionEntity;
+import edu.uark.registerapp.models.entities.TransactionEntity;
+public interface TransactionRepository extends CrudRepository<TransactionEntity, UUID> 
 
-public class TransactionRepository extends BaseRepository<TransactionEntity> implements TransactionRepositoryInterface 
 {
-	@Override
-	public TransactionEntity byLookupCode(String lookupCode) 
-	{
-		return this.firstOrDefaultWhere(
-			new WhereContainer(
-				(new WhereClause()).
-					postgreFunction(PostgreFunctionType.LOWER).
-					table(this.primaryTable).
-					fieldName(TransactionFieldNames.LOOKUP_CODE).
-					comparison(SQLComparisonType.EQUALS)
-			),
-			(ps) -> {
-				try {
-					ps.setObject(1, lookupCode.toLowerCase());
-				} catch (SQLException e) {}
-
-				return ps;
-			}
-		);
-	}
-	
-	@Override
-	public TransactionEntity createOne() {
-		return new TransactionEntity();
-	}
-	
-	public TransactionRepository() {
-		super(DatabaseTable.TRANSACTION);
-	}
-
-	@Override
-	public TransactionEntity byTransaction_Num(String transaction_num) 
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	// TODO: Connect to database
-	@Autowired
-	private TransactionRepository transactionRepository;
+	Optional<TransactionEntity> findById(UUID id);
+	Optional<TransactionEntity> findByLookupCode(String lookupCode);
+	Optional<TransactionEntity> findByTransaction_num(int transacrion_num);
 }
