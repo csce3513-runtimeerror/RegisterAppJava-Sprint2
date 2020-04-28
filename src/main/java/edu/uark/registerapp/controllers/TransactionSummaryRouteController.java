@@ -39,7 +39,7 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 	) {
 	   return new ModelAndView(ViewNames.TRANSACTION.getViewName()); 
 	   
-	   Transaction transaction = this.getItem(position);
+	   /*Transaction transaction = this.getItem(position);
 	   if (product != null) {
 		   TextView lookupCodeTextView = (TextView) view.findViewById(R.id.list_view_item_product_lookup_code);
 		   if (lookupCodeTextView != null) {
@@ -52,9 +52,7 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 		   }
 	   }
 
-	   return view;
+	   return view;*/
    }
-
-	}
 
 }

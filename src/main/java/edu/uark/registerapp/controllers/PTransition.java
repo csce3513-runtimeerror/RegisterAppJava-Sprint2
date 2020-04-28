@@ -55,7 +55,7 @@ public class PTransition  {
 		this.lookupCode = StringUtils.EMPTY;
 	}
 
-	public PTransition(P product) {
+	public PTransition(P product) { 
 		this.id = product.getId();
 		this.count = product.getCount();
 		this.createdOn = product.getCreatedOn();
