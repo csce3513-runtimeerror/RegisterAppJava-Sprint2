@@ -41,13 +41,13 @@ public class TransactionRestController extends BaseRestController {
 			return elevatedUserResponse;
 		}
 
-		return this.productCreateCommand
-			.setApiProduct(product)
+		return this.transactionCreateCommand
+			.setApiTransaction(transaction)
 			.execute();
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.PUT)
-	public @ResponseBody ApiResponse updateProduct(
+	public @ResponseBody ApiResponse updateTransaction(
 		@PathVariable final UUID productId,
 		@RequestBody final Product product,
 		final HttpServletRequest request,
@@ -64,7 +64,7 @@ public class TransactionRestController extends BaseRestController {
 			return elevatedUserResponse;
 		}
 
-		return this.productUpdateCommand
+		return this.transactionUpdateCommand
 			.setProductId(productId)
 			.setApiProduct(product)
 			.execute();
@@ -87,7 +87,7 @@ public class TransactionRestController extends BaseRestController {
 			return elevatedUserResponse;
 		}
 
-		this.productDeleteCommand
+		this.transactionDeleteCommand
 			.setProductId(productId)
 			.execute();
 
@@ -96,11 +96,11 @@ public class TransactionRestController extends BaseRestController {
 
 	// Properties
 	@Autowired
-	private ProductCreateCommand productCreateCommand;
+	private TransactionCreateCommand transactionCreateCommand;
 	
 	@Autowired
-	private ProductDeleteCommand productDeleteCommand;
+	private TransactiontDeleteCommand transactionDeleteCommand;
 	
 	@Autowired
-	private ProductUpdateCommand productUpdateCommand;
+	private TransactionUpdateCommand transactionUpdateCommand;
 }
