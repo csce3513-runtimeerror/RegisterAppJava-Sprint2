@@ -43,8 +43,8 @@ public class Transaction
 	public Transaction(TransactionEntity transactionEntity) 
 	{
 		this.id = transactionEntity.getId();
-		this.transaction_num = transactionEntity.getTransaction_Num();
-		this.lookupCode = transactionEntity.getLookupCode();
+		this.transaction_num = -1; // TODO
+		this.lookupCode = "Need to fix this"; // TODO
 
 	
 	}
