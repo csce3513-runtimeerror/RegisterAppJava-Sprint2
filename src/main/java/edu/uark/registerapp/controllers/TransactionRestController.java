@@ -25,7 +25,7 @@ import edu.uark.registerapp.models.api.Product;
 @RequestMapping(value = "/api/product")
 public class TransactionRestController extends BaseRestController {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public @ResponseBody ApiResponse createProduct(
+	public @ResponseBody ApiResponse createTransaction(
 		@RequestBody final Product product,
 		final HttpServletRequest request,
 		final HttpServletResponse response
