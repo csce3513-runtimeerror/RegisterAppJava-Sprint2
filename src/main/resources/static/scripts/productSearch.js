@@ -28,7 +28,7 @@ function findClickedListItemElement(clickedTarget) {
 }
 
 function onProductSearchKeyPress(event) {
-	if (event.target !== 13) { // ENTER/RETURN
+	if (event.which !== 13) { // ENTER/RETURN
 		return;
 	}
 
