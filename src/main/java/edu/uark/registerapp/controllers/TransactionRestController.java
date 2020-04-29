@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.uark.registerapp.commands.products.ProductCreateCommand;
 import edu.uark.registerapp.commands.products.ProductDeleteCommand;
-import edu.uark.registerapp.commands.products.ProductUpdateCommand;
 import edu.uark.registerapp.commands.transaction.TransactionEntryCreateCommand;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
