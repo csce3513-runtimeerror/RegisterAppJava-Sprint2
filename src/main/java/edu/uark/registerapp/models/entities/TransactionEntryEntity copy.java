@@ -102,8 +102,4 @@ public class TransactionEntryEntity {
 		this.productId = productId;
 		this.transactionId = transactionId;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e8d6300a98cb82302bbd4edfb8a0ad04b3c11ec8
