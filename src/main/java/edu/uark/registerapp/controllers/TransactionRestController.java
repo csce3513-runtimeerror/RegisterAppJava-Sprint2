@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.uark.registerapp.commands.products.ProductCreateCommand;
 import edu.uark.registerapp.commands.products.ProductDeleteCommand;
 import edu.uark.registerapp.commands.products.ProductUpdateCommand;
+import edu.uark.registerapp.commands.transaction.TransactionEntryCreateCommand;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
 import edu.uark.registerapp.models.api.Product;
+import edu.uark.registerapp.models.api.TransactionEntryCreate;
 
 @RestController
-@RequestMapping(value = "/api/product")
+@RequestMapping(value = "/api/transaction")
 public class TransactionRestController extends BaseRestController {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse createTransaction(
@@ -41,33 +43,25 @@ public class TransactionRestController extends BaseRestController {
 			return elevatedUserResponse;
 		}
 
-		return this.transactionCreateCommand
-			.setApiTransaction(transaction)
+		return this.productCreateCommand
+			.setApiProduct(product)
 			.execute();
 	}
 
-	@RequestMapping(value = "/{productId}", method = RequestMethod.PUT)
-	public @ResponseBody ApiResponse updateTransaction(
-		@PathVariable final UUID productId,
-		@RequestBody final Product product,
+	@RequestMapping(value = "/entry/", method = RequestMethod.POST)
+	public @ResponseBody ApiResponse updateProduct(
+		@RequestBody final TransactionEntryCreate transactionEntryCreate,
 		final HttpServletRequest request,
 		final HttpServletResponse response
 	) {
 
-		final ApiResponse elevatedUserResponse =
-			this.redirectUserNotElevated(
-				request,
-				response,
-				ViewNames.PRODUCT_LISTING.getRoute());
-
-		if (!elevatedUserResponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
-			return elevatedUserResponse;
-		}
-
-		return this.transactionUpdateCommand
-			.setProductId(productId)
-			.setApiProduct(product)
+		this.transactionEntryCreateCommand
+			.setCreateData(transactionEntryCreate)
 			.execute();
+
+		return (new ApiResponse())
+			.setRedirectUrl("/transactionSummary/"
+				+ transactionEntryCreate.getTransactionId().toString());
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
@@ -87,7 +81,7 @@ public class TransactionRestController extends BaseRestController {
 			return elevatedUserResponse;
 		}
 
-		this.transactionDeleteCommand
+		this.productDeleteCommand
 			.setProductId(productId)
 			.execute();
 
@@ -96,11 +90,11 @@ public class TransactionRestController extends BaseRestController {
 
 	// Properties
 	@Autowired
-	private TransactionCreateCommand transactionCreateCommand;
+	private ProductCreateCommand productCreateCommand;
 	
 	@Autowired
-	private TransactiontDeleteCommand transactionDeleteCommand;
+	private ProductDeleteCommand productDeleteCommand;
 	
 	@Autowired
-	private TransactionUpdateCommand transactionUpdateCommand;
+	private TransactionEntryCreateCommand transactionEntryCreateCommand;
 }

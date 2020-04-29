@@ -1,6 +1,7 @@
 package edu.uark.registerapp.controllers;
 
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,15 +15,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.exceptions.NotFoundException;
 import edu.uark.registerapp.commands.products.ProductByPartialSearchQuery;
+import edu.uark.registerapp.commands.products.ProductsQuery;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
+import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.ProductSearch;
 
 @Controller
 @RequestMapping(value = "/productSearch")
 public class ProductSearchRouteController extends BaseRouteController {
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
     public ModelAndView showSearch(
+        @RequestParam final UUID transactionId,
         @RequestParam final Map<String, String> queryParameters
     ) {
         try {
@@ -35,6 +39,21 @@ public class ProductSearchRouteController extends BaseRouteController {
         ModelAndView modelAndView = this.setErrorMessageFromQueryString(
             new ModelAndView(ViewNames.PRODUCT_SEARCH.getViewName()), 
             queryParameters);
+
+		try {
+			modelAndView.addObject(
+				ViewModelNames.PRODUCTS.getValue(),
+				this.productsQuery.execute());
+		} catch (final Exception e) {
+			modelAndView.addObject(
+				ViewModelNames.ERROR_MESSAGE.getValue(),
+				e.getMessage());
+			modelAndView.addObject(
+				ViewModelNames.PRODUCTS.getValue(),
+				(new Product[0]));
+        }
+
+        modelAndView.addObject("transactionId", transactionId);
 
         return modelAndView;
     }
@@ -52,14 +71,12 @@ public class ProductSearchRouteController extends BaseRouteController {
             ModelAndView modelAndView = new ModelAndView(
                 ViewNames.PRODUCT_SEARCH.getViewName()
             );
-
             modelAndView.addObject(ViewModelNames.ERROR_MESSAGE.getValue(),
             e.getMessage());
             modelAndView.addObject( 
                 ViewModelNames.PRODUCT_SEARCH.getValue(),
                 productSearch.getLookupCode()
             );
-
             return modelAndView;
         }*/
         return new ModelAndView(REDIRECT_PREPEND.concat(
@@ -69,6 +86,9 @@ public class ProductSearchRouteController extends BaseRouteController {
     
     
     //Properties
+	@Autowired
+    private ProductsQuery productsQuery;
+
     @Autowired
     private ProductByPartialSearchQuery productByPartialSearchQuery;
 }

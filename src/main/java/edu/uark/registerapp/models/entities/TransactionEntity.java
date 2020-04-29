@@ -1,25 +1,22 @@
 package edu.uark.registerapp.models.entities;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
-import org.apache.commons.lang3.StringUtils;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
-import edu.uark.registerapp.models.api.Transaction;
-
-
 
 @Entity
 @Table(name="transaction")
-
-public class TransactionEntity 
-{
-	@Id
+public class TransactionEntity {
+    @Id
     @Column(name="id", updatable = false)
     @GeneratedValue(strategy=GenerationType.AUTO)
     private final UUID id;
@@ -28,28 +25,51 @@ public class TransactionEntity
 		return this.id;
 	}
 
-	@Column(name = "lookupcode")
-	private String lookupCode;
+    @Column(name="cashierid")
+    private UUID cashierId;
 
-	public String getLookupCode() {
-		return this.lookupCode;
+	public UUID getCashierId() {
+		return this.cashierId;
 	}
 
-	public TransactionEntity setLookupCode(final String lookupCode) {
-		this.lookupCode = lookupCode;
+	public TransactionEntity setCashierId(final UUID cashierId) {
+		this.cashierId = cashierId;
 		return this;
 	}
 
-	@Column(name = "transaction_num")
-	
-	private int transaction_num;
+    @Column(name="total")
+    private long total;
 
-	public int getTransaction_Num() {
-		return this.transaction_num;
+	public long getTotal() {
+		return this.total;
 	}
 
-	public TransactionEntity setTransaction_Num(final int transaction_num) {
-		this.transaction_num = transaction_num;
+	public TransactionEntity setTotal(final long total) {
+		this.total = total;
+		return this;
+	}
+
+	@Column(name = "transactiontype")
+	private int type; // TODO: The idea is to map this to different types of transactions: Sale, Return, etc.
+
+	public int getType() {
+		return this.type;
+	}
+
+	public TransactionEntity setType(final int type) {
+		this.type = type;
+		return this;
+	}
+
+    @Column(name="transactionreferenceid")
+    private UUID referenceId;
+
+	public UUID getReferenceId() {
+		return this.referenceId;
+	}
+
+	public TransactionEntity setReferenceId(final UUID referenceId) {
+		this.referenceId = referenceId;
 		return this;
 	}
 
@@ -61,31 +81,38 @@ public class TransactionEntity
 		return this.createdOn;
 	}
 
-	public Transaction synchronize(final Transaction apiTransaction) {
-		this.setLookupCode(apiTransaction.getLookupCode());
-
-		apiTransaction.setId(this.getId());
-		apiTransaction.setTransaction_Num(this.getTransaction_Num());
-
-		return apiTransaction;
-	}
 	public TransactionEntity() {
-		this.transaction_num = -1;
+		this.type = -1;
+		this.total = 0L;
 		this.id = new UUID(0, 0);
-		this.lookupCode = StringUtils.EMPTY;
+		this.cashierId = new UUID(0, 0);
+		this.referenceId = new UUID(0, 0);
 	}
 
+	public TransactionEntity(
+		final UUID cashierId,
+		final long total,
+		final int type
+	) {
 
-	public TransactionEntity(final String lookupCode, final int transaction_num) {
-		this.transaction_num = transaction_num;
+		this.type = type;
+		this.total = total;
 		this.id = new UUID(0, 0);
-		this.lookupCode = lookupCode;
+		this.cashierId = cashierId;
+		this.referenceId = new UUID(0, 0);
 	}
 
-	 public TransactionEntity(final Transaction apiTransaction) {
-     	this.id = new UUID(0, 0);
-	 	this.transaction_num = apiTransaction.getTransaction_Num();
-		this.lookupCode = apiTransaction.getLookupCode();
-	 }
+	public TransactionEntity(
+		final UUID cashierId,
+		final long total,
+		final int type,
+		final UUID referenceId
+	) {
+
+		this.type = type;
+		this.total = total;
+		this.id = new UUID(0, 0);
+		this.cashierId = cashierId;
+		this.referenceId = referenceId;
+	}
 }
-
