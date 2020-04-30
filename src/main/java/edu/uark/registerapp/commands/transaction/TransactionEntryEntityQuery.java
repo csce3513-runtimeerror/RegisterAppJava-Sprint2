@@ -23,7 +23,11 @@ public class TransactionEntryEntityQuery {
     private UUID transactionId;
 	public UUID getTransactionId() {
 		return this.transactionId;
-	}
+    }
+    public TransactionEntryEntityQuery setTransactionId(UUID transactionId) {
+        this.transactionId = transactionId;
+        return this;
+    }
 	@Autowired
 	private TransactionEntryRepository transactionEntryRepository;
 }
