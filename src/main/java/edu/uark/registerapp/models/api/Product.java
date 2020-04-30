@@ -57,12 +57,12 @@ public class Product extends ApiResponse {
 
 		return this;
 	}
-	private long price;
+	private double price;
 
-	public long getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
-	public Product setPrice(final long price) {
+	public Product setPrice(final double price) {
 		this.price = price;
 		return this;
 	}
