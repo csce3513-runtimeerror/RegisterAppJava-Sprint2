@@ -81,17 +81,7 @@ public class TransactionEntryEntity {
 	public LocalDateTime getCreatedOn() {
 		return this.createdOn;
 	}
-
-	@Column(name = "itemname")
-	private String itemname;
-	public String getItemName() {
-		return this.itemname;
-	}
-	public TransactionEntryEntity setItemName(final String s){
-		this.itemname = s;
-		return this;
-	}
-
+	
 	public TransactionEntryEntity() {
 		this.price = 0L;
 		this.quantity = 0D;
