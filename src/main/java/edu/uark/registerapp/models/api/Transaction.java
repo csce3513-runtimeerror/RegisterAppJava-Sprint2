@@ -100,7 +100,12 @@ public class Transaction extends ApiResponse {
 		super();
 
 		this.id = new UUID(0,0);
+		this.cashierId = new UUID(0,0);
+		this.total = 0;
+		this.transactionType = 0;
+		this.transactionReferenceId = new UUID(0,0);
 		this.setCreatedOn(LocalDateTime.now());
+
 
 	}
 	
