@@ -31,6 +31,10 @@ public class TransactionQuery implements ResultCommandInterface<Transaction>
 	public UUID getTransactionId() {
 		return this.transactionId;
 	}
+	public TransactionQuery setTransactionId(final UUID transactionId){
+		this.transactionId = transactionId;
+		return this;
+	}
 	public TransactionQuery setEmployeeId(final UUID transactionId) {
 		this.transactionId = transactionId;
 		return this;
