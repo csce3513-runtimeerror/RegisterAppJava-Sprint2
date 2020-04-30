@@ -1,5 +1,6 @@
 package edu.uark.registerapp.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,6 @@ import edu.uark.registerapp.controllers.enums.ViewNames;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import java.util.UUID;
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,15 +28,18 @@ import edu.uark.registerapp.commands.transaction.TransactionEntryEntityQuery;
 
 import edu.uark.registerapp.commands.products.ProductCreateCommand;
 import edu.uark.registerapp.commands.products.ProductDeleteCommand;
+import edu.uark.registerapp.commands.products.ProductQuery;
 import edu.uark.registerapp.commands.products.ProductUpdateCommand;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
 import edu.uark.registerapp.models.api.ApiResponse;
+import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.Transaction; 
 
 
 @Controller
 @RequestMapping(value = "/transactionSummary")
 public class TransactionSummaryRouteController extends BaseRouteController {
+	ArrayList<Product> productsList = new ArrayList<Product>();
 	//Handle adding items to cart
 	@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
 	public ModelAndView start(
@@ -47,13 +50,22 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 	   ModelAndView view = new ModelAndView(ViewNames.TRANSACTION.getViewName()); 
 	   List<TransactionEntryEntity> transactionList = this.transactionEntryEntityQuery
 	   		.setTransactionId(transactionId)
-	   		.execute();
+			   .execute();
+		for (int i = 0; i < transactionList.size(); i++) {
+			UUID productId = (transactionList.get(i)).getProductId();
+			Product product = productQuery.setProductId(productId).execute();
+			productsList.add(product);
+		}
 	   view.addObject("transactions", transactionList);
+	   view.addObject("products", productsList); 
 	   view.addObject(ViewModelNames.TRANSACTION_ID.getValue(), transactionId.toString());
 	   return view;
 	   
    }
    @Autowired
    private TransactionEntryEntityQuery transactionEntryEntityQuery;
+
+   @Autowired
+   private ProductQuery productQuery;
 
 }

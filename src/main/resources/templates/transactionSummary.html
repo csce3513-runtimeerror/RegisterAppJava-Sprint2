@@ -28,8 +28,9 @@
 				<th>Quantity</th>
 				<th>Remove Item</th>
 			</tr>
-			<tr th:each="transaction : ${transactions}">
-				<td th:text="${transaction.item}"></td>
+			<tr th:each="transaction : ${transactions}" th:each="product : ${products}">
+				<td th:text="${product.lookupCode}"></td>
+				<td th:text="${transaction.price}"></td>
 				<td><input type="number" class="quantity" th:value="${transaction.quantity}"></td>
 				<td><button type="button" class="remove">Remove</button></td>
 			</tr>
@@ -45,7 +46,7 @@
 
   <!-- work on total quantity and total price in cart -->
  
-  <h5>total product count: </h5>
+  <!--<h5>total product count: </h5>
   <h4>total price: </h4>
   <div class="total">
 	<table id="table3" class="table">
@@ -59,6 +60,6 @@
   </div> 
   	<div class="hidden">
 		<input id="transactionId" type="hidden" th:value="${transactionId}" />
-	</div>
+	</div>-->
 </body>
 </html>
