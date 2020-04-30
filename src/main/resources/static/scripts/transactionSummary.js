@@ -23,7 +23,7 @@ function checkout(event) {
 function cancelTransaction(event) {
     //alert("cancel");
     const deleteActionElement = event.target;
-    const deleteActionUrl = ("/api/transaction/" + getId());
+    const deleteActionUrl = ("/api/transaction/" + getTransactionId());
 
     deleteActionElement.disabled = true;
 
@@ -32,6 +32,9 @@ function cancelTransaction(event) {
 
         if(isSuccessResponse(callbackResponse)) {
             window.location.replace("/");
+        }
+        else{
+            alert("Cancel Transaction failed");
         }
     });
 };
