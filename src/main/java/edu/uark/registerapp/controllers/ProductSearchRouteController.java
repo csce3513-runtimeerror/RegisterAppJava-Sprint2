@@ -22,12 +22,14 @@ import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.ProductSearch;
 
 @Controller
-@RequestMapping(value = "/productSearch", method = RequestMethod.GET)
+@RequestMapping(value = "/productSearch")
 public class ProductSearchRouteController extends BaseRouteController {
-    @RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
+    //@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showSearch(
         @RequestParam final UUID transactionId,
-        @RequestParam final Map<String, String> queryParameters
+        @RequestParam final Map<String, String> queryParameters,
+        //final HttpServletRequest request
     ) {
         try {
             this.productByPartialSearchQuery.execute();
