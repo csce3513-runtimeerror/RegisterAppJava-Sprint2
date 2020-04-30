@@ -25,17 +25,16 @@ import edu.uark.registerapp.models.api.ProductSearch;
 @RequestMapping(value = "/productSearch")
 public class ProductSearchRouteController extends BaseRouteController {
     @RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
-    //@RequestMapping(value = "/{transactionId}")
     public ModelAndView showSearch(
         @RequestParam final UUID transactionId,
         @RequestParam final Map<String, String> queryParameters
     ) {
-        /*try {
+        try {
             this.productByPartialSearchQuery.execute();
         } catch (NotFoundException e) {
             return new ModelAndView(REDIRECT_PREPEND.concat(
                 ViewNames.PRODUCT_LISTING.getRoute()));
-        }*/
+        }
 
         ModelAndView modelAndView = this.setErrorMessageFromQueryString(
             new ModelAndView(ViewNames.PRODUCT_SEARCH.getViewName()), 
@@ -79,14 +78,7 @@ public class ProductSearchRouteController extends BaseRouteController {
                 productSearch.getLookupCode()
             );
             return modelAndView;
-        }*/
-        try {
-            this.productByPartialSearchQuery.execute();
-        } catch (NotFoundException e) {
-            return new ModelAndView(REDIRECT_PREPEND.concat(
-                ViewNames.PRODUCT_LISTING.getRoute()));
-        }
-        
+        }*/        
         return new ModelAndView(REDIRECT_PREPEND.concat(
             ViewNames.PRODUCT_LISTING.getRoute())
         );
