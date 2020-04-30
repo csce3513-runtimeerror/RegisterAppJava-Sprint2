@@ -8,8 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import edu.uark.registerapp.models.entities.TransactionEntity;
 
-public class Transaction extends ApiResponse
-{
+public class Transaction extends ApiResponse {
 	private UUID id;
 	public UUID getId() 
 	{
@@ -106,7 +105,7 @@ public class Transaction extends ApiResponse
 	}
 	
 	public Transaction(final TransactionEntity transactionEntity) {
-		//super(false);
+		super(false);
 
 		this.id = transactionEntity.getId();
 		this.cashierId = transactionEntity.getCashierId();
