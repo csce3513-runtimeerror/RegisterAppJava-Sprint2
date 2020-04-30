@@ -10,14 +10,14 @@ import edu.uark.registerapp.models.entities.TransactionEntity;
 
 public class Transaction 
 {
-	private UUID transactionId;
-	public UUID getTransactionId() 
+	private UUID id;
+	public UUID getId() 
 	{
-		return this.transactionId;
+		return this.id;
 	}
 	public Transaction setId(final UUID id) 
 	{
-		this.transactionId = id;
+		this.id = id;
 		return this;
 	}
 
@@ -100,7 +100,7 @@ public class Transaction
 	public Transaction(){
 		super();
 
-		this.transactionId = new UUID(0,0);
+		this.id = new UUID(0,0);
 		this.setCreatedOn(LocalDateTime.now());
 
 	}
@@ -108,7 +108,7 @@ public class Transaction
 	public Transaction(final TransactionEntity transactionEntity) {
 		//super(false);
 
-		this.transactionId = transactionEntity.getId();
+		this.id = transactionEntity.getId();
 		this.cashierId = transactionEntity.getCashierId();
 		this.total = (int) transactionEntity.getTotal();
 		this.transactionType = transactionEntity.getType();
