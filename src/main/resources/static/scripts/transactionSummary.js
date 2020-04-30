@@ -27,6 +27,31 @@ function checkout(event) {
     alert("checkout");
 }
 
+//delete transaction
 function cancelTransaction(event) {
-    alert("cancel");
+    //alert("cancel");
+    const deleteActionElement = event.target;
+    const deleteActionUrl = ("/api/transaction/" + getTransactionId());
+
+    deleteActionElement.disabled = true;
+
+    ajaxDelete(deleteActionUrl, (callbackResponse) => {
+        deleteActionElement.disabled = false;
+
+        if(isSuccessResponse(callbackResponse)) {
+            window.location.replace("/");
+        }
+    });
+};
+//end delete
+
+//Getters and setters
+function getTransactionId(){
+    return getTransactionIdElement().value;
+}
+function setTransactionId(transactionId){
+    getTransactionIdElement().value = transactionId;
+}
+function getTransactionIdElement() {
+    return document.getElementById("transactionId");
 }
