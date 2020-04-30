@@ -48,10 +48,10 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
-	   ModelAndView view = new ModelAndView(ViewNames.TRANSACTION.getViewName()); 
 	   List<TransactionEntryEntity> transactionList = this.transactionEntryEntityQuery
 	   		.setTransactionId(transactionId)
 			   .execute();
+		ArrayList<LineItemDisplay> displayList = new ArrayList<LineItemDisplay>();
 		for (int i = 0; i < transactionList.size(); i++) {
 			UUID productId = (transactionList.get(i)).getProductId();
 			Product product = productQuery.setProductId(productId).execute();
