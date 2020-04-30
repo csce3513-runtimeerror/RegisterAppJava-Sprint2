@@ -55,7 +55,7 @@ function productClick(event) {
 	let listItem = findClickedListItemElement(event.target);
 
 	ajaxPost(
-		"/api/transaction/entry/",
+		"/api/productSearch/entry/",
 		{
 			transactionId: document.getElementById("transactionId"),
 			productId: listItem.querySelector("input[name='productId'][type='hidden']").value
