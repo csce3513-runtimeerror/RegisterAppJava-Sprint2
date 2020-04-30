@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-	getStartTransactionActionElement().addEventListener(
-		"click",
-		() => { window.location.assign("/productSearch"); });
+	getStartTransactionActionElement()
+		.addEventListener("click", onStartTransactionClicked);
 
 	getViewProductsActionElement().addEventListener(
 		"click",
@@ -21,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function onStartTransactionClicked() {
-	ajaxPost("/api/productSearch/", {}, (callbackResponse) => {
+	ajaxPost("/api/transaction/", {}, (callbackResponse) => {
 		if (isErrorResponse(callbackResponse)) {
 			return;
 		}

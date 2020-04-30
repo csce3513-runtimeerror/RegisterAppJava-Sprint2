@@ -17,7 +17,7 @@ console.log(quantities);
 document.addEventListener("DOMContentLoaded", function(event) {
 	document.getElementById("addItem").addEventListener(
 		"click",
-       () => { window.location.assign("/productSearch"); });
+       () => { window.location.assign("/productSearch/?transactionId=" + document.getElementById("transactionId").value); });
     document.getElementById("checkout").addEventListener("click", checkout);
     document.getElementById("cancel").addEventListener("click", cancelTransaction);
 });

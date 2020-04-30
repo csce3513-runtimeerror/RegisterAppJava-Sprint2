@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,7 +46,8 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 	) {
 	   ModelAndView view = new ModelAndView(ViewNames.TRANSACTION.getViewName()); 
 	   List<TransactionEntryEntity> transactionList = this.transactionEntryEntityQuery.execute();
-	   view.addObject("transactions", transactionList); 
+	   view.addObject("transactions", transactionList);
+	   view.addObject(ViewModelNames.TRANSACTION_ID.getValue(), transactionId.toString());
 	   return view;
 	   
    }

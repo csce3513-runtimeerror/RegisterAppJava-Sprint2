@@ -39,7 +39,7 @@ function onProductSearchKeyPress(event) {
 			.querySelector("span.productLookupCodeDisplay")
 			.innerHTML;
 
-		if (lookupCode.toLowerCase().indexOf(event.target.toLowerCase().value) >= 0) {
+		if (lookupCode.toLowerCase().indexOf(event.target.value.toLowerCase()) >= 0) {
 			if (productListElements[i].classList.contains("hidden")) {
 				productListElements[i].classList.remove("hidden");
 			}
@@ -52,12 +52,12 @@ function onProductSearchKeyPress(event) {
 }
 
 function productClick(event) {
-	let listItem = findClickedListItemElement(event.target);
+	const listItem = findClickedListItemElement(event.target);
 
 	ajaxPost(
-		"/api/productSearch/entry/",
+		"/api/transaction/entry/",
 		{
-			transactionId: document.getElementById("transactionId"),
+			transactionId: document.getElementById("transactionId").value,
 			productId: listItem.querySelector("input[name='productId'][type='hidden']").value
 		},
 		(callbackResponse) => {
