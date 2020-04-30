@@ -55,8 +55,8 @@
 			<th>total price</th>
 		</tr>
 		<tr th:each="transaction : ${transactions}">
-			<td th:text="${transaction.totalCount}"></td>
-			<td th:text="${transaction.totalPrice}"></td>
+			<td th:text="${transaction.transactiontype}"></td>
+			<td th:text="${transaction.total"></td>
 		</tr>
 	</table>
   </div> 
