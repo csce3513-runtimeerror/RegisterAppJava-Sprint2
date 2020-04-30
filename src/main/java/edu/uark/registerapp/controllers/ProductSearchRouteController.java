@@ -1,6 +1,7 @@
 package edu.uark.registerapp.controllers;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,28 +21,33 @@ import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.ProductSearch;
+import edu.uark.registerapp.models.entities.ActiveUserEntity;
 
 @Controller
-<<<<<<< HEAD
-@RequestMapping(value = "/mainMenu/productSearch", method = RequestMethod.GET)
-=======
-@RequestMapping(value = "/productSearch/{transactionId}")
->>>>>>> 3c19966d125221f7faf0c659a3d8843c1c4f5d5d
+@RequestMapping(value = "/mainMenu/productSearch")
+//@RequestMapping(value = "/productSearch/{transactionId}")
 public class ProductSearchRouteController extends BaseRouteController {
-    //@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
+    //@RequestMapping(method = RequestMethod.GET)
     public ModelAndView showSearch(
         @RequestParam final UUID transactionId,
-        @RequestParam final Map<String, String> queryParameters
+        @RequestParam final Map<String, String> queryParameters,
+        final HttpServletRequest request
     ) {
+        final Optional<ActiveUserEntity> activeUserEntity =
+        this.getCurrentUser(request);
+         if (!activeUserEntity.isPresent()) {
+            return buildInvalidSessionResponse();
+        }
+
         try {
             this.productByPartialSearchQuery.execute();
-        } catch (NotFoundException e) {
+        } catch (final NotFoundException e) {
             return new ModelAndView(REDIRECT_PREPEND.concat(
                 ViewNames.PRODUCT_LISTING.getRoute()));
         }
 
-        ModelAndView modelAndView = this.setErrorMessageFromQueryString(
+        final ModelAndView modelAndView = this.setErrorMessageFromQueryString(
             new ModelAndView(ViewNames.PRODUCT_SEARCH.getViewName()), 
             queryParameters);
 
@@ -65,8 +71,8 @@ public class ProductSearchRouteController extends BaseRouteController {
 
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ModelAndView performProductSearch(ProductSearch productSearch,
-    HttpServletRequest request) {
+    public ModelAndView performProductSearch(final ProductSearch productSearch,
+    final HttpServletRequest request) {
         /*try {
             this.
                     .setSessionID(request.getSession().getId())
