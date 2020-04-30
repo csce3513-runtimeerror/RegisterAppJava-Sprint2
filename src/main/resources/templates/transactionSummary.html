@@ -9,8 +9,14 @@
 
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
 	<script type="text/javascript" src="/scripts/transactionSummary.js" defer></script>
+	<script>
+		function myFunction() {
+	  document.getElementById("totalCount").innerHTML = 5 + 6;
+	  document.getElementById("totalPrice").innerHTML = 5 + 6;
+		}
+	  </script>
 </head>
-<body>
+<body onload="myFunction()">
 	<div class="header">
 		<h1 class="primary-message">Shopping Cart</h1>
 	</div>
@@ -54,6 +60,8 @@
   Total Quantity: 2
   <br>
   Total Price: $3.25
+  <h5>total product count: <span id="totalCount"></span></h5>
+  <h4>total price: <spam id="totalPrice"></span></h4>
 
   	<div class="hidden">
 		<input id="transactionId" type="hidden" th:value="${transactionId}" />
