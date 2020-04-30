@@ -1,6 +1,8 @@
 package edu.uark.registerapp.models.entities;
 
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -52,14 +54,15 @@ public class ProductEntity {
 		return this;
 	}
 
-    @Column(name="price")
-    private long price;
+	@Column(name="price")
+	//NumberFormat n = NumberFormat.getCurrencyInstance(Locale.US);
+    private double price;
 
-	public long getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
-	public ProductEntity setPrice(final long price) {
+	public ProductEntity setPrice(final double price) {
 		this.price = price;
 		return this;
 	}
