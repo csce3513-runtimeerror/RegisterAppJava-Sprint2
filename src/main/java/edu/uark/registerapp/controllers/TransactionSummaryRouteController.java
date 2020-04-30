@@ -32,6 +32,7 @@ import edu.uark.registerapp.commands.products.ProductQuery;
 import edu.uark.registerapp.commands.products.ProductUpdateCommand;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
 import edu.uark.registerapp.models.api.ApiResponse;
+import edu.uark.registerapp.models.api.LineItemDisplay;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.Transaction; 
 
@@ -51,13 +52,15 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 	   List<TransactionEntryEntity> transactionList = this.transactionEntryEntityQuery
 	   		.setTransactionId(transactionId)
 			   .execute();
+		double price = (transactionList.get(0)).getPrice();
+		Product product = new Product();
 		for (int i = 0; i < transactionList.size(); i++) {
 			UUID productId = (transactionList.get(i)).getProductId();
-			Product product = productQuery.setProductId(productId).execute();
-			productsList.add(product);
+			product = productQuery.setProductId(productId).execute();
 		}
-	   view.addObject("transactions", transactionList);
-	   view.addObject("products", productsList); 
+		String lookupCode = product.getLookupCode();
+		LineItemDisplay display = new LineItemDisplay(lookupCode, price);
+	   view.addObject("displays", display);
 	   view.addObject(ViewModelNames.TRANSACTION_ID.getValue(), transactionId.toString());
 	   return view;
 	   
