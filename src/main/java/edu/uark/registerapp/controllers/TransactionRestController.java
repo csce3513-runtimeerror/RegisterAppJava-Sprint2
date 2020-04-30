@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.uark.registerapp.commands.exceptions.UnauthorizedException;
 import edu.uark.registerapp.commands.transaction.TransactionCreateCommand;
+import edu.uark.registerapp.commands.transaction.TransactionDeleteCommand;
 import edu.uark.registerapp.commands.transaction.TransactionEntryCreateCommand;
 import edu.uark.registerapp.controllers.enums.QueryParameterNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
@@ -80,10 +82,25 @@ public class TransactionRestController extends BaseRestController {
 				+ transactionEntryCreate.getTransactionId().toString());
 	}
 
+	@RequestMapping(value = "{transactionId}", method = RequestMethod.DELETE)
+	public @ResponseBody ApiResponse deleteTransaction(
+			@PathVariable final UUID transactionId,
+			final HttpServletRequest request,
+			final HttpServletResponse response
+	) {
+		this.transactionDeleteCommand.
+			setTransactionId(transactionId).execute();
+			
+		return new ApiResponse();
+	}
+
 	// Properties
 	@Autowired
 	private TransactionCreateCommand transactionCreateCommand;
 
 	@Autowired
 	private TransactionEntryCreateCommand transactionEntryCreateCommand;
+
+	@Autowired
+	private TransactionDeleteCommand transactionDeleteCommand;
 }
