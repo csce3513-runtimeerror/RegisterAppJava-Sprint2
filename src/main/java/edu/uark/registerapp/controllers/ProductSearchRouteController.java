@@ -31,6 +31,7 @@ import edu.uark.registerapp.models.entities.ActiveUserEntity;
 @RequestMapping(value = "/productSearch")
 public class ProductSearchRouteController extends BaseRouteController {
     //@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showSearch(
         //@RequestParam final UUID transactionId,
         @RequestParam final Map<String, String> queryParameters,
