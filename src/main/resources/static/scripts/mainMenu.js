@@ -20,15 +20,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		() => { displayError("Functionality has not yet been implemented."); });
 });
 
-function onStartTransactionClicked() {
-	ajaxPost("/api/productSearch/", {}, (callbackResponse) => {
-		if (isErrorResponse(callbackResponse)) {
-			return;
-		}
-
-		window.location.assign(callbackResponse.data.redirectUrl);
-	});
-}
 
 // Getters and setters
 function getViewProductsActionElement() {
