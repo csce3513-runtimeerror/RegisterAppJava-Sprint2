@@ -38,9 +38,9 @@ import edu.uark.registerapp.models.api.Transaction;
 
 
 @Controller
-@RequestMapping(value = "/transactionSummary")
+@RequestMapping(value = "/transactionSummary") 
 public class TransactionSummaryRouteController extends BaseRouteController {
-	ArrayList<LineItemDisplay> displayList = new ArrayList<LineItemDisplay>;
+	ArrayList<LineItemDisplay> displayList = new ArrayList<LineItemDisplay>();
 	//Handle adding items to cart
 	@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
 	public ModelAndView start(
