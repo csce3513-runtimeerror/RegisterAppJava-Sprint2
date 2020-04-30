@@ -31,7 +31,7 @@
 			<tr th:each="transaction : ${transactions}">
 				<td th:text="${transaction.productId}"></td>
 				<td th:text="${transaction.price}"></td>
-				<td><input type="number" class="quantity" value="1"></td>
+				<td><input type="number" class="quantity" value="${transaction.quantity}"></td>
 				<td><button type="button" class="remove">Remove</button></td>
 			 </tr>
 		</table>

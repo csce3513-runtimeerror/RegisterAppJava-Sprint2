@@ -38,12 +38,13 @@ public class TransactionEntryEntity {
 	}
 
     @Column(name="productid")
-    private UUID productId;
-
+	private UUID productId;
 	public UUID getProductId() {
 		return this.productId;
 	}
-
+	public String getLookupcode(final UUID productId){
+		return "null";
+	}
 	public TransactionEntryEntity setProductId(final UUID productId) {
 		this.productId = productId;
 		return this;

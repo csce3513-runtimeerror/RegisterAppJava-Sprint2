@@ -61,6 +61,10 @@ public class TransactionUpdateCommand implements ResultCommandInterface<Product>
 		this.apiProduct = apiProduct;
 		return this;
 	}
+
+	private int quantity;
+	//TODO
+	//Check productUpdateCommand.java
 	
 	@Autowired
 	private ProductRepository productRepository;
