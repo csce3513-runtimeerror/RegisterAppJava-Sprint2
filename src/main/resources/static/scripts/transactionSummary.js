@@ -23,7 +23,7 @@ function checkout(event) {
 function cancelTransaction(event) {
     //alert("cancel");
     const deleteActionElement = event.target;
-    const deleteActionUrl = ("/api/transaction/" + getTransaction_Num());
+    const deleteActionUrl = ("/api/transaction/" + getId());
 
     deleteActionElement.disabled = true;
 
