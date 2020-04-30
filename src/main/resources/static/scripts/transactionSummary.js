@@ -38,6 +38,9 @@ function cancelTransaction(event) {
 //end delete
 
 //Getters and setters
+function getDeleteActionElement(){
+    return document.getElementById("cancel");
+}
 function getTransactionId(){
     return getTransactionIdElement().value;
 }
