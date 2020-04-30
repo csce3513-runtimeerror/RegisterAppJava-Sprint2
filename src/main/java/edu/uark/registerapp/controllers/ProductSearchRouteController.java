@@ -53,7 +53,7 @@ public class ProductSearchRouteController extends BaseRouteController {
 				(new Product[0]));
         }
 
-        modelAndView.addObject("transactionId", transactionId);
+        //modelAndView.addObject("transactionId", transactionId);
 
         return modelAndView;
     }
