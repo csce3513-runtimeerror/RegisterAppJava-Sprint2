@@ -21,15 +21,6 @@ public class TransactionEntryCreate extends ApiResponse {
         return this;
     }
 
-    private String itemname;
-    public String getItemName() {
-        return this.itemname;
-    }
-    public TransactionEntryCreate setItemName(final String name) {
-        this.itemname = name;
-        return this;
-    }
-
     public TransactionEntryCreate() {
         this.productId = new UUID(0, 0);
         this.transactionId = new UUID(0, 0);
