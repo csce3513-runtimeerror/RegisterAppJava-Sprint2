@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import edu.uark.registerapp.models.entities.TransactionEntity;
 
-public class Transaction 
+public class Transaction extends ApiResponse
 {
 	private UUID id;
 	public UUID getId() 
