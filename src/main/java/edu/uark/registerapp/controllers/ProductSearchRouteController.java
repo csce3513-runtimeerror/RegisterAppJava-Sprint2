@@ -28,7 +28,7 @@ public class ProductSearchRouteController extends BaseRouteController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showSearch(
         @RequestParam final UUID transactionId,
-        @RequestParam final Map<String, String> queryParameters,
+        @RequestParam final Map<String, String> queryParameters
         //final HttpServletRequest request
     ) {
         try {
