@@ -25,13 +25,13 @@
 			<tr>
 				<td>Apple</td>
 				<td>$1.25</td>
-				<td><input type="number" id="quantity" value="1" step="1"></td>
+				<td><button type="button"><minus>-</minus></button> 1 <button type="button"><plus>+</plus></button>
 				<td><button type="button" class="remove">Remove</button></td>
 			</tr>
 			<tr>
 				<td>Banana</td>
 				<td>$2.00</td>
-				<td><input type="number" id="quantity" value="1" step="1"></td>
+				<td><button type="button"><minus>-</minus></button> 1 <button type="button"><plus>+</plus></button></td>
 				<td><button type="button" class="remove">Remove</button></td>
 			</tr>
 			<tr th:each="transaction : ${transactions}">
@@ -48,6 +48,12 @@
   <button type="button" class="button" id="checkout">Checkout</button>
   <button type="button" class="button" id="addItem">Add Item</button>
   <button type="button" class="cancel" id="cancel">Cancel Transaction</button>
+  <br>
+
+  <!-- work on total quantity and total price in cart -->
+  Total Quantity: 2
+  <br>
+  Total Price: $3.25
 
   	<div class="hidden">
 		<input id="transactionId" type="hidden" th:value="${transactionId}" />
