@@ -29,10 +29,13 @@
 				<th>Remove Item</th>
 			</tr>
 			<tr th:each="transaction : ${transactions}">
-				<td th:text="${transaction.itemname}"></td>
+				<td th:text="${transaction.productId}"></td>
 				<td th:text="${transaction.price}"></td>
 				<td><input type="number" class="quantity" th:value="${transaction.quantity}"></td>
 				<td><button type="button" class="remove">Remove</button></td>
+			</tr>
+			<tr th:each="product : ${products}">
+				<td th:text="${product.lookupCode}"></td>
 			</tr>
 		</table>
 
