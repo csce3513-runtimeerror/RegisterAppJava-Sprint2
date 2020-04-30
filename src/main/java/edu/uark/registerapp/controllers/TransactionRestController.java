@@ -5,22 +5,23 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.uark.registerapp.commands.products.ProductCreateCommand;
-import edu.uark.registerapp.commands.products.ProductDeleteCommand;
+import edu.uark.registerapp.commands.exceptions.UnauthorizedException;
+import edu.uark.registerapp.commands.transaction.TransactionCreateCommand;
 import edu.uark.registerapp.commands.transaction.TransactionEntryCreateCommand;
+import edu.uark.registerapp.controllers.enums.QueryParameterNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.TransactionEntryCreate;
+import edu.uark.registerapp.models.entities.ActiveUserEntity;
 
 @RestController
 @RequestMapping(value = "/api/transaction")
@@ -32,19 +33,35 @@ public class TransactionRestController extends BaseRestController {
 		final HttpServletResponse response
 	) {
 
-		final ApiResponse elevatedUserResponse =
-			this.redirectUserNotElevated(
-				request,
-				response,
-				ViewNames.PRODUCT_LISTING.getRoute());
+		try {
+			final ActiveUserEntity activeUserEntity =
+				this.validateActiveUserCommand
+					.setSessionKey(request.getSession().getId())
+					.execute();
 
-		if (!elevatedUserResponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
-			return elevatedUserResponse;
+			if (activeUserEntity == null) {
+				return this.redirectSessionNotActive(response);
+			}
+
+			final UUID transactionId = this.transactionCreateCommand
+				.setCashierId(activeUserEntity.getEmployeeId())
+				.execute();
+
+			response.setStatus(HttpStatus.CREATED.value());
+			return (new ApiResponse())
+				.setRedirectUrl(
+					ViewNames.PRODUCT_SEARCH.getViewName().concat(
+						this.buildInitialQueryParameter(
+							QueryParameterNames.TRANSACTION_ID.getValue(),
+							transactionId.toString())));
+		} catch (final UnauthorizedException e) {
+			return this.redirectSessionNotActive(response);
+		} catch (final Exception e) {
+			response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+
+			return (new ApiResponse())
+				.setErrorMessage("Unable to create transaction. " + e.getMessage());
 		}
-
-		return this.productCreateCommand
-			.setApiProduct(product)
-			.execute();
 	}
 
 	@RequestMapping(value = "/entry/", method = RequestMethod.POST)
@@ -63,37 +80,10 @@ public class TransactionRestController extends BaseRestController {
 				+ transactionEntryCreate.getTransactionId().toString());
 	}
 
-	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
-	public @ResponseBody ApiResponse deleteProduct(
-		@PathVariable final UUID productId, 
-		final HttpServletRequest request,
-		final HttpServletResponse response
-	) {
-
-		final ApiResponse elevatedUserResponse =
-			this.redirectUserNotElevated(
-				request,
-				response,
-				ViewNames.PRODUCT_LISTING.getRoute());
-
-		if (!elevatedUserResponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
-			return elevatedUserResponse;
-		}
-
-		this.productDeleteCommand
-			.setProductId(productId)
-			.execute();
-
-		return new ApiResponse();
-	}
-
 	// Properties
 	@Autowired
-	private ProductCreateCommand productCreateCommand;
-	
-	@Autowired
-	private ProductDeleteCommand productDeleteCommand;
-	
+	private TransactionCreateCommand transactionCreateCommand;
+
 	@Autowired
 	private TransactionEntryCreateCommand transactionEntryCreateCommand;
 }
