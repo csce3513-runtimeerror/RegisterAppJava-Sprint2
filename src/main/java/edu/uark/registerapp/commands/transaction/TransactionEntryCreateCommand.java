@@ -36,7 +36,8 @@ public class TransactionEntryCreateCommand {
 						.setPrice(productEntity.get().getPrice())
 						.setProductId(this.createData.getProductId())
 						.setQuantity(1)
-						.setTransactionId(this.createData.getTransactionId());
+						.setTransactionId(this.createData.getTransactionId())
+						.setItemName(productEntity.get().getLookupCode());
 				this.transactionEntryRepository.save(newTransactionEntryEntity);
 			}
 	}
