@@ -22,8 +22,13 @@ import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.api.ProductSearch;
 
 @Controller
+<<<<<<< HEAD
 @RequestMapping(value = "/mainMenu/productSearch", method = RequestMethod.GET)
+=======
+@RequestMapping(value = "/productSearch/{transactionId}")
+>>>>>>> 3c19966d125221f7faf0c659a3d8843c1c4f5d5d
 public class ProductSearchRouteController extends BaseRouteController {
+    //@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showSearch(
         @RequestParam final UUID transactionId,
@@ -53,7 +58,7 @@ public class ProductSearchRouteController extends BaseRouteController {
 				(new Product[0]));
         }
 
-        modelAndView.addObject("transactionId", transactionId);
+        //modelAndView.addObject("transactionId", transactionId);
 
         return modelAndView;
     }
