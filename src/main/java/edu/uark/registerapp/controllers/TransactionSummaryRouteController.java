@@ -48,6 +48,7 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
+		ModelAndView view = new ModelAndView(ViewNames.TRANSACTION.getViewName());
 	   List<TransactionEntryEntity> transactionList = this.transactionEntryEntityQuery
 	   		.setTransactionId(transactionId)
 			   .execute();
