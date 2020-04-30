@@ -92,7 +92,7 @@ public class ProductEntity {
 		this.lookupCode = StringUtils.EMPTY;
 	}
 
-	public ProductEntity(final String lookupCode, final int count, final long price) {
+	public ProductEntity(final String lookupCode, final int count, final double price) {
 		this.count = count;
 		this.price = price;
 		this.id = new UUID(0, 0);

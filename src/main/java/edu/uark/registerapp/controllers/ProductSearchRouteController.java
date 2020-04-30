@@ -112,8 +112,20 @@ public class ProductSearchRouteController extends BaseRouteController {
                 Cookie cookie = new Cookie("transactionId", queryParameters.get("transactionId"));
                 response.addCookie(cookie);
               }
+
+              try {
+                this.productByPartialSearchQuery.execute();
+                return new ModelAndView(REDIRECT_PREPEND.concat(
+                    ViewNames.PRODUCT_LISTING.getRoute()));
+            } catch (final NotFoundException e) {
+                //return new ModelAndView(REDIRECT_PREPEND.concat(
+                //    ViewNames.PRODUCT_LISTING.getRoute()));
+                    return new ModelAndView().addObject(
+                    ViewModelNames.ERROR_MESSAGE.getValue(),
+                    e.getMessage());
+            } 
           
-              return modelAndView.addAllObjects(queryParameters);
+              //return modelAndView.addAllObjects(queryParameters);
         }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -136,15 +148,6 @@ public class ProductSearchRouteController extends BaseRouteController {
             );
             return modelAndView;
         }*/       
-        try {
-            this.productByPartialSearchQuery.execute();
-        } catch (final NotFoundException e) {
-            //return new ModelAndView(REDIRECT_PREPEND.concat(
-            //    ViewNames.PRODUCT_LISTING.getRoute()));
-                return new ModelAndView().addObject(
-				ViewModelNames.ERROR_MESSAGE.getValue(),
-				e.getMessage());
-        } 
         return new ModelAndView(REDIRECT_PREPEND.concat(
             ViewNames.PRODUCT_LISTING.getRoute())
         );
