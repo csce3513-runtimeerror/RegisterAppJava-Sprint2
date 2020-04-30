@@ -2,7 +2,7 @@ var removeButtons = document.getElementsByClassName("remove");
 for (var i = 0; i < removeButtons.length; i++) {
     var button = removeButtons[i];
     button.addEventListener("click", function() {
-        document.getElementById("table").deleteRow(i);
+        document.getElementById("table2").deleteRow(i);
         i = removeButtons.length;
     });
 }
