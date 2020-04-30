@@ -9,8 +9,14 @@
 
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
 	<script type="text/javascript" src="/scripts/transactionSummary.js" defer></script>
+	<script>
+		function myFunction() {
+	  document.getElementById("totalCount").innerHTML = 2;
+	  document.getElementById("totalPrice").innerHTML = "$3.25";
+		}
+	  </script>
 </head>
-<body>
+<body onload="myFunction()">
 	<div class="header">
 		<h1 class="primary-message">Shopping Cart</h1>
 	</div>
@@ -25,19 +31,19 @@
 			<tr>
 				<td>Apple</td>
 				<td>$1.25</td>
-				<td><button type="button"><minus>-</minus></button> 1 <button type="button"><plus>+</plus></button>
+				<td><input type="number" class="quantity" value="1"></td>
 				<td><button type="button" class="remove">Remove</button></td>
 			</tr>
 			<tr>
 				<td>Banana</td>
 				<td>$2.00</td>
-				<td><button type="button"><minus>-</minus></button> 1 <button type="button"><plus>+</plus></button></td>
+				<td><input type="number" class="quantity" value="1"></td>
 				<td><button type="button" class="remove">Remove</button></td>
 			</tr>
 			<tr th:each="transaction : ${transactions}">
 				<td th:text="${transaction.productId}"></td>
 				<td th:text="${transaction.price}"></td>
-				<td><input type="number" id="quantity" value="1" step="1"></td>
+				<td><input type="number" class="quantity" value="1"></td>
 				<td><button type="button" class="remove">Remove</button></td>
 			 </tr>
 		</table>
@@ -51,9 +57,9 @@
   <br>
 
   <!-- work on total quantity and total price in cart -->
-  Total Quantity: 2
-  <br>
-  Total Price: $3.25
+ 
+  <h5>total product count: <span id="totalCount"></span></h5>
+  <h4>total price: <spam id="totalPrice"></span></h4>
 
   	<div class="hidden">
 		<input id="transactionId" type="hidden" th:value="${transactionId}" />
