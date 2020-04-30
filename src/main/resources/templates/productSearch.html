@@ -39,10 +39,14 @@
 			<input id="transactionId" type="hidden" th:value="${transactionId}" />
 		</div>
 	</div>
-	<br>
+	<!--<br>
 	<button type="button" class="button" id="productSearch">search</button>
 	<br>
-	<button type="button" class="button" id="addcart">add to cart</button>
+	<button type="button" class="button" id="addcart">add to cart</button>-->
+	<div class="productSearchWrapper" th:classappend="not ${#strings.isEmpty(errorMessage)} ? hidden : ''">
+		<br />
+		<button id="searchButton" type="button" class="action">Search</button>
+	</div>
 	<div class="footer">
 		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
 	</div>
