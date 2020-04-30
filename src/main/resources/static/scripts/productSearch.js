@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		productListElements[i].addEventListener("click", productClick);
 	}
 
-	//document.getElementById("productSearch").addEventListener("keypress", onProductSearchKeyPress);
+	document.getElementById("productSearch").addEventListener("keypress", onProductSearchKeyPress);
 });
 
 function findClickedListItemElement(clickedTarget) {
