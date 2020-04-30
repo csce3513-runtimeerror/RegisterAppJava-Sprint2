@@ -72,7 +72,7 @@ public class Product extends ApiResponse {
 		this.count = -1;
 		this.id = new UUID(0, 0);
 		this.lookupCode = StringUtils.EMPTY;
-
+		this.price = 0.0;
 		this.setCreatedOn(LocalDateTime.now());
 	}
 
