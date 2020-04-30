@@ -47,16 +47,7 @@
  
   <h5>total product count: </h5>
   <h4>total price: </h4>
-  <div class="total">
-	<table id="table3" class="table">
-		<tr>
-			<th>total price</th>
-		</tr>
-		<tr th:each="transaction : ${transactions}">]
-			<td th:text="${transaction.total"></td>
-		</tr>
-	</table>
-  </div> 
+  
   	<div class="hidden">
 		<input id="transactionId" type="hidden" th:value="${transactionId}" />
 	</div>
