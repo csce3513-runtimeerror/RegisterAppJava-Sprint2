@@ -28,6 +28,7 @@ public class TransactionEntryEntityQuery {
         this.transactionId = transactionId;
         return this;
     }
+
 	@Autowired
 	private TransactionEntryRepository transactionEntryRepository;
 }
