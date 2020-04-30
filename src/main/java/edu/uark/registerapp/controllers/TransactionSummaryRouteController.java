@@ -40,6 +40,7 @@ import edu.uark.registerapp.models.api.Transaction;
 @Controller
 @RequestMapping(value = "/transactionSummary")
 public class TransactionSummaryRouteController extends BaseRouteController {
+	ArrayList<LineItemDisplay> displayList = new ArrayList<LineItemDisplay>;
 	//Handle adding items to cart
 	@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
 	public ModelAndView start(
@@ -47,21 +48,20 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
-		ArrayList<Product> productsList = new ArrayList<Product>();
 	   ModelAndView view = new ModelAndView(ViewNames.TRANSACTION.getViewName()); 
 	   List<TransactionEntryEntity> transactionList = this.transactionEntryEntityQuery
 	   		.setTransactionId(transactionId)
 			   .execute();
-		double price = (transactionList.get(0)).getPrice();
-		double quantity = (transactionList.get(0)).getQuantity();
-		Product product = new Product();
 		for (int i = 0; i < transactionList.size(); i++) {
 			UUID productId = (transactionList.get(i)).getProductId();
-			product = productQuery.setProductId(productId).execute();
+			Product product = productQuery.setProductId(productId).execute();
+			String lookupCode = product.getLookupCode();
+			double price = (transactionList.get(i)).getPrice();
+			double quantity = (transactionList.get(i)).getQuantity();
+			LineItemDisplay display = new LineItemDisplay(lookupCode, price, quantity);
+			displayList.add(display);
 		}
-		String lookupCode = product.getLookupCode();
-		LineItemDisplay display = new LineItemDisplay(lookupCode, price, quantity);
-	   view.addObject("displays", display);
+	   view.addObject("displays", displayList);
 	   view.addObject(ViewModelNames.TRANSACTION_ID.getValue(), transactionId.toString());
 	   return view;
 	   
