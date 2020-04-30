@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 	getStartTransactionActionElement().addEventListener(
 		"click",
-		onStartTransactionClicked);
+		() => { window.location.assign("/productSearch"); });
 
 	getViewProductsActionElement().addEventListener(
 		"click",
