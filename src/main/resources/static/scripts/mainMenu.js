@@ -20,14 +20,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function onStartTransactionClicked() {
-	/*ajaxPost("/api/transaction/", {}, (callbackResponse) => {
+	ajaxPost("/api/transaction/", {}, (callbackResponse) => {
 		if (isErrorResponse(callbackResponse)) {
 			return;
 		}
 
 		window.location.assign(callbackResponse.data.redirectUrl);
-	});*/
-	window.location.assign("/productSearch");
+	});
 }
 
 // Getters and setters

@@ -53,7 +53,6 @@ function onProductSearchKeyPress(event) {
 
 function productClick(event) {
 	const listItem = findClickedListItemElement(event.target);
-
 	ajaxPost(
 		"/api/transaction/entry/",
 		{
