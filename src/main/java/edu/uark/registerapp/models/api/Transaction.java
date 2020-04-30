@@ -94,7 +94,7 @@ public class Transaction extends ApiResponse {
 	{
 		this.lookupCode = lookupCode;
 		return this;
-	}	*/
+	}*/
 
 	public Transaction(){
 		super();
@@ -120,7 +120,7 @@ public class Transaction extends ApiResponse {
 
 		this.setCreatedOn(transactionEntity.getCreatedOn());
 		//this.transaction_num = -1; // TODO
-		//this.lookupCode = "Need to fix this"; // TODO
+		//this.lookupCode = transactionEntity.getLookupCode(); // TODO
 
 	
 	}
