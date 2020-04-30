@@ -28,7 +28,6 @@ public class ProductSearchRouteController extends BaseRouteController {
     public ModelAndView showSearch(
         @RequestParam final UUID transactionId,
         @RequestParam final Map<String, String> queryParameters
-        //final HttpServletRequest request
     ) {
         try {
             this.productByPartialSearchQuery.execute();
