@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		productListElements[i].addEventListener("click", productClick);
 	}
 
-	document.getElementById("productSearch").addEventListener("keypress", onProductSearchKeyPress);
+	//document.getElementById("productSearch").addEventListener("keypress", onProductSearchKeyPress);
 });
 
 function findClickedListItemElement(clickedTarget) {
@@ -27,7 +27,7 @@ function findClickedListItemElement(clickedTarget) {
 	}
 }
 
-/*function onProductSearchKeyPress(event) {
+function onProductSearchKeyPress(event) {
 	if (event.which !== 13) { // ENTER/RETURN
 		return;
 	}
@@ -68,9 +68,4 @@ function productClick(event) {
 
 			window.location.replace(callbackResponse.data.redirectUrl);
 		});
-}*/
-function productClick(event) {
-	let listItem = findClickedListItemElement(event.target);
-
-	window.location.assign("/productDetail/" + listItem.querySelector("input[name='productId'][type='hidden']").value);
 }
