@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById("cancel").addEventListener("click", cancelTransaction);
 });
 
-
 function checkout(event) {
     alert("checkout");
 }
