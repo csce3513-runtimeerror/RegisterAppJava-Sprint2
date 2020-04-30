@@ -135,7 +135,16 @@ public class ProductSearchRouteController extends BaseRouteController {
                 productSearch.getLookupCode()
             );
             return modelAndView;
-        }*/        
+        }*/       
+        try {
+            this.productByPartialSearchQuery.execute();
+        } catch (final NotFoundException e) {
+            //return new ModelAndView(REDIRECT_PREPEND.concat(
+            //    ViewNames.PRODUCT_LISTING.getRoute()));
+                return new ModelAndView().addObject(
+				ViewModelNames.ERROR_MESSAGE.getValue(),
+				e.getMessage());
+        } 
         return new ModelAndView(REDIRECT_PREPEND.concat(
             ViewNames.PRODUCT_LISTING.getRoute())
         );
