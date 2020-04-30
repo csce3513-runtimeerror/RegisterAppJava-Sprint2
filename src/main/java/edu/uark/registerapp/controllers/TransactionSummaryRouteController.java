@@ -53,13 +53,14 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 	   		.setTransactionId(transactionId)
 			   .execute();
 		double price = (transactionList.get(0)).getPrice();
+		double quantity = (transactionList.get(0)).getQuantity();
 		Product product = new Product();
 		for (int i = 0; i < transactionList.size(); i++) {
 			UUID productId = (transactionList.get(i)).getProductId();
 			product = productQuery.setProductId(productId).execute();
 		}
 		String lookupCode = product.getLookupCode();
-		LineItemDisplay display = new LineItemDisplay(lookupCode, price);
+		LineItemDisplay display = new LineItemDisplay(lookupCode, price, quantity);
 	   view.addObject("displays", display);
 	   view.addObject(ViewModelNames.TRANSACTION_ID.getValue(), transactionId.toString());
 	   return view;
