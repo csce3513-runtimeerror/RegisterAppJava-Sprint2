@@ -35,8 +35,11 @@ import edu.uark.registerapp.models.api.Transaction;
 @Controller
 @RequestMapping(value = "/transactionSummary")
 public class TransactionSummaryRouteController extends BaseRouteController {
+	public ModelAndView start() {
+		return new ModelAndView(ViewNames.TRANSACTION.getViewName());
+	}
 	//Handle adding items to cart
-	@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
 	public ModelAndView start(
 		@PathVariable final UUID transactionId,
 		@RequestParam final Map<String, String> queryParameters,
@@ -47,7 +50,7 @@ public class TransactionSummaryRouteController extends BaseRouteController {
 	   view.addObject("transactions", transactionList); 
 	   return view;
 	   
-   }
+   }*/
    @Autowired
    private TransactionEntryEntityQuery transactionEntryEntityQuery;
 
