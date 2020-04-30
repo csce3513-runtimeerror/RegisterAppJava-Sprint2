@@ -54,9 +54,7 @@ function onProductSearchKeyPress(event) {
 function productClick(event) {
 	const listItem = findClickedListItemElement(event.target);
 
-	var table = document.getElementById("table2");
-	table.insertRow(1);
-	/*ajaxPost(
+	ajaxPost(
 		"/api/transaction/entry/",
 		{
 			transactionId: document.getElementById("transactionId").value,
@@ -68,5 +66,5 @@ function productClick(event) {
 			}
 
 			window.location.replace(callbackResponse.data.redirectUrl);
-		});*/
+		});
 }
