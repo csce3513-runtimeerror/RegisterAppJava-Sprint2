@@ -2,8 +2,8 @@ var removeButtons = document.getElementsByClassName("remove");
 for (var i = 0; i < removeButtons.length; i++) {
     var button = removeButtons[i];
     button.addEventListener("click", function() {
-        document.getElementById("table2").deleteRow(i);
-        i = removeButtons.length;
+        var buttonClicked = event.target;
+        buttonClicked.parentElement.parentElement.remove();
     });
 }
 document.addEventListener("DOMContentLoaded", function(event) {
