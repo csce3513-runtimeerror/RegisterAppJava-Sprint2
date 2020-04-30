@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function onStartTransactionClicked() {
-	ajaxPost("/api/transaction/", {}, (callbackResponse) => {
+	ajaxPost("/api/productSearch/", {}, (callbackResponse) => {
 		if (isErrorResponse(callbackResponse)) {
 			return;
 		}
