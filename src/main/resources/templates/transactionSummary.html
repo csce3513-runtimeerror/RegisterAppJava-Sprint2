@@ -22,10 +22,22 @@
 				<th>Quantity</th>
 				<th>Remove Item</th>
 			</tr>
+			<tr>
+				<td>Apple</td>
+				<td>$1.25</td>
+				<td><input type="number" id="quantity" value="1"></td>
+				<td><button type="button" class="remove">Remove</button></td>
+			</tr>
+			<tr>
+				<td>Banana</td>
+				<td>$2.00</td>
+				<td><input type="number" id="quantity" value="1"></td>
+				<td><button type="button" class="remove">Remove</button></td>
+			</tr>
 			<tr th:each="transaction : ${transactions}">
 				<td th:text="${transaction.productId}"></td>
 				<td th:text="${transaction.price}"></td>
-				<td><input type="text" class="quantity"></td>
+				<td><input type="number" id="quantity" value="1"></td>
 				<td><button type="button" class="remove">Remove</button></td>
 			 </tr>
 		</table>

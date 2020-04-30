@@ -6,14 +6,6 @@ for (var i = 0; i < removeButtons.length; i++) {
         i = removeButtons.length;
     });
 }
-var quantities = document.getElementsByClassName("quantity");
-var sum = 0;
-for (var i = 0; i < quantities.length; i++) {
-    var value = document.getElementsByClassName("quantity")[i].value;;
-    sum += value;
-    console.log(sum);
-}
-console.log(quantities);
 document.addEventListener("DOMContentLoaded", function(event) {
 	document.getElementById("addItem").addEventListener(
 		"click",
