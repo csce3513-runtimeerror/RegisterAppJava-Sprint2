@@ -24,11 +24,14 @@ import edu.uark.registerapp.models.api.ProductSearch;
 @Controller
 @RequestMapping(value = "/productSearch")
 public class ProductSearchRouteController extends BaseRouteController {
+<<<<<<< HEAD
     @RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
+=======
+    @RequestMapping(value = "/{transactionId}")
+>>>>>>> 1222549d38cab85b82a427c2528aa19ae2b99104
     public ModelAndView showSearch(
         @RequestParam final UUID transactionId,
         @RequestParam final Map<String, String> queryParameters
-        //final HttpServletRequest request
     ) {
         /*try {
             this.productByPartialSearchQuery.execute();
